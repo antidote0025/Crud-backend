@@ -8,24 +8,21 @@ dotenv.config();
 
 const app = express();
 
-// Middlewares
-app.use(express.json());  // replaces body-parser
+app.use(express.json());
 app.use(cors());
 
-// Routes
 app.use("/api", route);
 
-const PORT = process.env.PORT || 7000;
-const URL = process.env.MONGOURL;
+const PORT = process.env.PORT || 8000;
+const MONGO_URL = process.env.MONGOURL;
 
-// Connect DB and start server
-mongoose
-  .connect(URL)
+mongoose.connect(MONGO_URL)
   .then(() => {
-    console.log("DB connected successfully");
-
+    console.log("✅ MongoDB Connected Successfully");
     app.listen(PORT, () => {
-      console.log(`Server is running on port : ${PORT}`);
+      console.log(` Server is running on port: ${PORT}`);
     });
   })
-  .catch((error) => console.log(error));
+  .catch((error) => {
+    console.error(" Database Connection Failed:", error);
+  });

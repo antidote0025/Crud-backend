@@ -1,12 +1,19 @@
 import express from "express";
-import { create, deleteUser, getAll, getone, update } from "../controller/userController.js";
+import { create, deleteUser, getAll, getOne, update } from "../controller/userController.js";
 
-const route = express.Router();
+const router = express.Router();
 
-route.post("/create", create);
-route.get("/getAll", getAll);
-route.get ("/getone/:id",getone)
-route.put("/update/:id", update);
-route.delete("/delete/:id",deleteUser);
+router.post("/create", create);
 
-export default route;
+
+router.get("/getall", getAll); 
+
+
+router.get("/getone/:id", getOne);
+
+router.put("/update/:id", update);
+
+
+router.delete("/delete/:id", deleteUser);
+
+export default router;
